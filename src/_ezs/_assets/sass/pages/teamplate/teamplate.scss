@@ -1,0 +1,136 @@
+@import "./../../init";
+.teamplate {
+    &-header {
+        .chosee-header {
+            height: 35px;
+            padding: 0 12px;
+            background: #eaf7ff;
+            line-height: 35px;
+            font-weight: 400;
+            border-radius: 1px;
+        }
+        .chosee-add {
+            line-height: 35px;
+        }
+        .divider {
+            height: 20px;
+            width: 1px;
+            background-color: #e0e3e5;
+            padding: 0;
+        }
+        .list-breakpoints {
+            position: relative;
+            &:hover {
+                .breakpoints-current {
+                    color: $primary !important;
+                }
+                ul {
+                    left: 50%;
+                    opacity: 1;
+                    pointer-events: auto;
+                    -webkit-animation: movedown .2s forwards;
+                    animation: movedown .2s forwards;
+                }
+            }
+            ul {
+                position: absolute;
+                left: 50%;
+                z-index: 5;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                list-style: none;
+                background: #fff;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 2px 14px 0 rgb(32 48 60 / 15%);
+                box-shadow: 0 2px 14px 0 rgb(32 48 60 / 15%);
+                z-index: 100;
+                padding: 10px 0;
+                -webkit-transition: margin-top .2s linear, opacity .2s linear;
+                transition: margin-top .2s linear, opacity .2s linear;
+                pointer-events: none;
+                opacity: 0;
+                -webkit-transition: margin-top .2s linear, opacity .2s linear;
+                transition: margin-top .2s linear, opacity .2s linear;
+                -webkit-animation: moveup .2s forwards;
+                animation: moveup .2s forwards;
+                margin-bottom: 0;
+                li {
+                    line-height: 30px;
+                    padding: 0 18px 0 40px;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    i {
+                        position: absolute;
+                        top: 8px;
+                        left: 13px;
+                        &.fa-mobile {
+                            left: 17px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.teamplate-padding {
+    width: 0;
+    visibility: hidden;
+    transition: all .2s ease-out;
+    &.open {
+        width: 360px;
+        visibility: visible;
+    }
+}
+
+.teamplate-browser {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    .toolbar {
+        position: relative;
+        width: 100%;
+        height: 42px;
+        padding-left: 58px;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMzZweCIgaGVpZ2h0PSI4cHgiIHZpZXdCb3g9IjAgMCAzNiA4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA1Mi4yICg2NzE0NSkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+VGl0bGViYXItaWNvbnMyPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9IlRpdGxlYmFyLWljb25zMiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBpZD0iT3ZhbCIgZmlsbD0iI0MyQzdDQiIgY3g9IjQiIGN5PSI0IiByPSI0Ij48L2NpcmNsZT4KICAgICAgICA8Y2lyY2xlIGlkPSJPdmFsLUNvcHkiIGZpbGw9IiNDMkM3Q0IiIGN4PSIxOCIgY3k9IjQiIHI9IjQiPjwvY2lyY2xlPgogICAgICAgIDxjaXJjbGUgaWQ9Ik92YWwtQ29weS0yIiBmaWxsPSIjQzJDN0NCIiBjeD0iMzIiIGN5PSI0IiByPSI0Ij48L2NpcmNsZT4KICAgIDwvZz4KPC9zdmc+) #fff 12px no-repeat;
+        &-url {
+            height: 30px;
+            background: #f4f4f4;
+            border-radius: 17px;
+            padding-left: 18px;
+            line-height: 31px;
+            color: #43515c;
+            font-weight: 300;
+        }
+    }
+    .body {
+        height: calc(100vh - 133px);
+        overflow: auto;
+    }
+    .teamplate-browser-content {
+        transition: all .3s ease;
+        margin: 0 auto;
+        &.mobile-open {
+            width: 375px;
+        }
+    }
+}
+
+@keyframes movedown {
+    0% {
+        margin-top: -7px;
+    }
+    100% {
+        margin-top: -4px;
+    }
+}

@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
+import store from "./redux/store";
+
+const { PUBLIC_URL } = process.env;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={store} basename={PUBLIC_URL} />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

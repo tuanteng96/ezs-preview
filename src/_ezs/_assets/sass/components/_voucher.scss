@@ -1,0 +1,63 @@
+.voucher-ezs {
+    &__item {
+        position: relative;
+        display: flex;
+        border-right: 1px solid #d9d9d9;
+        border-radius: 1px;
+        overflow: hidden;
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+        .voucher-line {
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            &__bd,
+            &__bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+            &__bd {
+                width: 3px;
+                background: radial-gradient(circle at 0 5px, #f1f3f4 0, rgba(0, 0, 0, 0.03) 2px, #d9d9d9 0 3px, transparent 3px);
+                background-size: 3px 7.1px;
+                background-repeat: repeat-y;
+            }
+            &__bg {
+                width: 1px;
+                background: repeating-linear-gradient(#d4d4d4, #d4d4d4 2px, transparent 0 7.3px);
+                background-size: 1px 7.1px;
+            }
+        }
+        .voucher-info {
+            padding-left: 4px;
+            border-top: 1px solid #d9d9d9;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        .voucher-btn {
+            position: relative;
+            border-left: 1px dashed #d9d9d9;
+            border-top: 1px solid #d9d9d9;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        .voucher-rounded {
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: 1px solid #d9d9d9;
+            left: -7px;
+            background-color: $white;
+            &-top {
+                top: -6px;
+            }
+            &-bottom {
+                bottom: -6px;
+            }
+        }
+    }
+}

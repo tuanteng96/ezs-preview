@@ -58,8 +58,8 @@ export default function Teamplate() {
 
     return (
         <div className="page" id="page">
-            <button onClick={onExport}>Export</button>
-            {/* <Header /> */}
+            {/* <button onClick={onExport}>Export</button> */}
+            <Header />
             <ReactDragList
                 dataSource={sitemap}
                 row={(item, index) => item.Html}
