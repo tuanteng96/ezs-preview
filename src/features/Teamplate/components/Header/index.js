@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
-import { toggleHeader, updateIsDesktop } from "../../teamplateSlice";
+import { openHeader, updateIsDesktop } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -18,7 +18,7 @@ function Header(props) {
   };
 
   const onChangeHeader = () => {
-    dispath(toggleHeader());
+    dispath(openHeader());
   };
 
   return (
@@ -57,18 +57,16 @@ function Header(props) {
               </div>
               <ul>
                 <li
-                  className={`text-hover-primary ${
-                    isDesktop && "text-primary"
-                  }`}
+                  className={`text-hover-primary ${isDesktop && "text-primary"
+                    }`}
                   onClick={() => changeBreakpoints(true)}
                 >
                   <i className="fal fa-desktop"></i>
                   Desktop
                 </li>
                 <li
-                  className={`text-hover-primary ${
-                    !isDesktop && "text-primary"
-                  }`}
+                  className={`text-hover-primary ${!isDesktop && "text-primary"
+                    }`}
                   onClick={() => changeBreakpoints(false)}
                 >
                   <i className="fal fa-mobile"></i>

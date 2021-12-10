@@ -3,7 +3,10 @@ import Header from "../../components/Header";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
 import Frame from "react-frame-component";
 import Teamplate from "../../../../App/teamplate/layout/Teamplate";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Sidebar from "../../components/Sidebar";
+import Layout from "../Layout";
+import { hideHeader } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -13,15 +16,25 @@ import { useSelector } from "react-redux";
 function MainPage(props) {
   const ref = useRef();
   const [height, setHeight] = useState("0px");
-
-  const { isDesktop, openSidebar } = useSelector(({ teamplate }) => ({
+  const dispath = useDispatch();
+  const { isDesktop, openSidebar, headerList, headerCurrent, isHeader } = useSelector(({ teamplate }) => ({
     isDesktop: teamplate.isDesktop,
     openSidebar: teamplate.openSidebar,
+    headerList: teamplate.header.list,
+    headerCurrent: teamplate.header.current,
+    isHeader: teamplate.header.open
   }));
+
 
   const onLoad = () => {
     setHeight(ref.current.contentWindow.document.body.scrollHeight + "px");
   };
+
+  const onHideSidebar = (Type) => {
+    if (Type === "Header") {
+      dispath(hideHeader())
+    }
+  }
 
   return (
     <React.Fragment>
@@ -31,9 +44,8 @@ function MainPage(props) {
         <div className="mt-6 teamplate-browser">
           <div className="px-35">
             <div
-              className={`bg-white position-relative rounded overflow-hidden teamplate-browser-content ${
-                !isDesktop && "mobile-open"
-              }`}
+              className={`bg-white position-relative rounded overflow-hidden teamplate-browser-content ${!isDesktop && "mobile-open"
+                }`}
             >
               <div className="toolbar d-flex align-items-center">
                 <div className="toolbar-url flex-1 mr-6">https://cser.vn</div>
@@ -91,6 +103,7 @@ function MainPage(props) {
           <div id="mountHere"></div>
           </body></html>'
                 >
+                  <Layout />
                   <Teamplate />
                 </Frame>
               </div>
@@ -98,6 +111,10 @@ function MainPage(props) {
           </div>
         </div>
       </div>
+      {
+        isHeader && <Sidebar Title="Chọn Header" List={headerList} Type="Header" Current={headerCurrent} onHide={onHideSidebar} />
+      }
+
     </React.Fragment>
   );
 }
