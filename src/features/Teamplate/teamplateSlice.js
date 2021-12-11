@@ -3,168 +3,168 @@ import {
 } from "@reduxjs/toolkit";
 
 const dataHeader = [{
-    ID: 1,
-    Title: "Header 1",
-    Html: `<header id="header" class="header tra-menu navbar-light">
-        <div class="header-wrapper">
+        ID: 1,
+        Title: "Header 1",
+        Html: `<header id="header" class="header tra-menu navbar-light">
+            <div class="header-wrapper">
 
 
-            <!-- MOBILE HEADER -->
-            <div class="wsmobileheader clearfix">
-                <span class="smllogo">
-                    
-                        <img src="https://cser.vn/Upload/image/2021/12/01/undefined_2021-12-01-152949.png" alt="Cser Beauty" width="170" height="50">
+                <!-- MOBILE HEADER -->
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo">
                         
-                    <div class="icon-smmenu">
-                        <i class="fal fa-times close-list-user"></i>
-                        <div class="header-btn header-phone icon-user-mb">
+                            <img src="https://cser.vn/Upload/image/2021/12/01/undefined_2021-12-01-152949.png" alt="Cser Beauty" width="170" height="50">
                             
-                            <a class="circle-btn" href="/member/login.aspx"><span class="bg-color-09 white-color"><i class="far fa-user"></i></span></a>
-                            
-                        </div>
-                        <div class="header-btn header-cart" style="display: none;">
-                            <a class="circle-btn" href="/dat-hang/san-pham.aspx">
-                                <span class="bg-color-09 white-color">
-                                    <i class="fal fa-shopping-cart"></i>
-                                </span>
-                                <p class="header-cart__item txt-color-06">12</p>
-                            </a>
-                        </div>
-                    </div>
-
-                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-            </span></div>
-
-
-            <!-- NAVIGATION MENU -->
-            <div class="wsmainfull menu clearfix">
-                <div class="wsmainwp clearfix">
-
-
-                    <!-- LOGO IMAGE -->
-                    <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 340 x 100 pixels) -->
-                    <div class="desktoplogo">
-                        <a href="/" class="logo-black">
-                            
-                                <img src="https://cser.vn/Upload/image/2021/12/01/undefined_2021-12-01-152949.png" alt="Cser Beauty" width="170" height="50">
+                        <div class="icon-smmenu">
+                            <i class="fal fa-times close-list-user"></i>
+                            <div class="header-btn header-phone icon-user-mb">
                                 
-                        </a>
-                    </div>
-                    <div class="desktoplogo">
-                        <a href="/" class="logo-white">
-                            
-                                <img src="https://cser.vn/Upload/image/2021/12/01/undefined_2021-12-01-153000.png" alt="" width="170" height="50">
+                                <a class="circle-btn" href="/member/login.aspx"><span class="bg-color-09 white-color"><i class="far fa-user"></i></span></a>
                                 
-                        </a>
-                    </div>
-
-
-                    <!-- MAIN MENU -->
-                    <nav class="wsmenu clearfix"><div class="overlapblackbg"></div>
-                        <ul class="wsmenu-list">
-
-                            <li><a href="/">Trang chủ</a>
-
-                            </li>
-                            <li><a href="/gioi-thieu.aspx">Giới thiệu</a>
-
-                            </li>
-                            <!-- END DROPDOWN MENU -->
-
-
-                            <!-- DROPDOWN MENU -->
-                            <li aria-haspopup="true"><span class="wsmenu-click"><i class="wsmenu-arrow"></i></span><a href="/san-pham/san-pham-794.aspx">Sản phẩm<span class="wsarrow"></span></a>
-                                <ul class="sub-menu">
-                                    
-                                        <li aria-haspopup="true"><a href="/san-pham/cham-soc-da-mat-8977.aspx">Chăm sóc da mặt</a></li>
-                                        
-                                        <li aria-haspopup="true"><a href="/san-pham/son-10007.aspx">Son</a></li>
-                                        
-                                        <li aria-haspopup="true"><a href="/san-pham/thuc-pham-chuc-nang-10011.aspx">Thực phẩm chức năng</a></li>
-                                        
-                                        <li aria-haspopup="true"><a href="/san-pham/cham-soc-body-8978.aspx">Chăm sóc Body</a></li>
-                                        
-                                </ul>
-                            </li>
-                            <!-- END DROPDOWN MENU -->
-
-
-                            <!-- MEGAMENU -->
-                            <li aria-haspopup="true"><span class="wsmenu-click"><i class="wsmenu-arrow"></i></span><a href="/dv/san-pham/dich-vu-795.aspx">Dịch vụ <span class="wsarrow"></span></a>
-                                <ul class="sub-menu">
-                                    
-                                        <li><a href="/dv/san-pham/triet-long-8980.aspx">Triệt lông</a></li>
-                                        
-                                        <li><a href="/dv/san-pham/tam-trang-8981.aspx">Tắm trắng</a></li>
-                                        
-                                        <li><a href="/dv/san-pham/goi-dau-duong-sinh-8986.aspx">Gội đầu dưỡng sinh</a></li>
-                                        
-                                        <li><a href="/dv/san-pham/cham-soc-da-8979.aspx">Chăm sóc da</a></li>
-                                        
-                                </ul>
-                            </li>
-                            <!-- END MEGAMENU -->
-
-
-                            <!-- SIMPLE NAVIGATION LINK -->
-                            <li>
-                                <a href="/tin-tuc-su-kien-693.aspx">Blogs</a>
-                            </li>
-                            <li><a href="/lien-he.aspx">Liên hệ</a></li>
-
-
-                            <!-- DROPDOWN MENU -->
-                            
-                            <!-- END DROPDOWN MENU -->
-
-
-                            <!-- SIMPLE NAVIGATION LINK -->
-                            
-
-
-                            <!-- HEADER CALL BUTTON -->
-                            
-                            <li class="header-btn header-phone  icon-user-desktop">
-                                
-                                <a class="circle-btn" href="/member/login.aspx "><span class="bg-color-09 white-color"><i class="far fa-user"></i></span></a>
-                                
-                            </li>
-                            <li class="header-phone header-cart" style="display: none;">
-                                <a href="/dat-hang/san-pham.aspx">
+                            </div>
+                            <div class="header-btn header-cart" style="display: none;">
+                                <a class="circle-btn" href="/dat-hang/san-pham.aspx">
                                     <span class="bg-color-09 white-color">
                                         <i class="fal fa-shopping-cart"></i>
                                     </span>
                                     <p class="header-cart__item txt-color-06">12</p>
                                 </a>
-                            </li>
-                            <!-- HEADER BUTTON 
-                            <li class="nl-simple" aria-haspopup="true">
-                                <a href="#" class="btn btn-color-02 tra-01-hover last-link">Book Now</a>
-                            </li> -->
+                            </div>
+                        </div>
+
+                        <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </span></div>
 
 
-                            <!-- HEADER SOCIAL LINKS 															
-                            <li class="nl-simple txt-color-03 header-socials clearfix" aria-haspopup="true">
-                                <span><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></span>
-                                <span><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></span>
-                                <span><a href="#" class="ico-instagram"><i class="fab fa-instagram"></i></a></span>
-                                <span><a href="#" class="ico-dribbble"><i class="fab fa-yelp"></i></a></span>	
-                            </li> -->
+                <!-- NAVIGATION MENU -->
+                <div class="wsmainfull menu clearfix">
+                    <div class="wsmainwp clearfix">
 
 
-                        </ul>
-                    </nav>
-                    <!-- END MAIN MENU -->
+                        <!-- LOGO IMAGE -->
+                        <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 340 x 100 pixels) -->
+                        <div class="desktoplogo">
+                            <a href="/" class="logo-black">
+                                
+                                    <img src="https://cser.vn/Upload/image/2021/12/01/undefined_2021-12-01-152949.png" alt="Cser Beauty" width="170" height="50">
+                                    
+                            </a>
+                        </div>
+                        <div class="desktoplogo">
+                            <a href="/" class="logo-white">
+                                
+                                    <img src="https://cser.vn/Upload/image/2021/12/01/undefined_2021-12-01-153000.png" alt="" width="170" height="50">
+                                    
+                            </a>
+                        </div>
 
+
+                        <!-- MAIN MENU -->
+                        <nav class="wsmenu clearfix"><div class="overlapblackbg"></div>
+                            <ul class="wsmenu-list">
+
+                                <li><a href="/">Trang chủ</a>
+
+                                </li>
+                                <li><a href="/gioi-thieu.aspx">Giới thiệu</a>
+
+                                </li>
+                                <!-- END DROPDOWN MENU -->
+
+
+                                <!-- DROPDOWN MENU -->
+                                <li aria-haspopup="true"><span class="wsmenu-click"><i class="wsmenu-arrow"></i></span><a href="/san-pham/san-pham-794.aspx">Sản phẩm<span class="wsarrow"></span></a>
+                                    <ul class="sub-menu">
+                                        
+                                            <li aria-haspopup="true"><a href="/san-pham/cham-soc-da-mat-8977.aspx">Chăm sóc da mặt</a></li>
+                                            
+                                            <li aria-haspopup="true"><a href="/san-pham/son-10007.aspx">Son</a></li>
+                                            
+                                            <li aria-haspopup="true"><a href="/san-pham/thuc-pham-chuc-nang-10011.aspx">Thực phẩm chức năng</a></li>
+                                            
+                                            <li aria-haspopup="true"><a href="/san-pham/cham-soc-body-8978.aspx">Chăm sóc Body</a></li>
+                                            
+                                    </ul>
+                                </li>
+                                <!-- END DROPDOWN MENU -->
+
+
+                                <!-- MEGAMENU -->
+                                <li aria-haspopup="true"><span class="wsmenu-click"><i class="wsmenu-arrow"></i></span><a href="/dv/san-pham/dich-vu-795.aspx">Dịch vụ <span class="wsarrow"></span></a>
+                                    <ul class="sub-menu">
+                                        
+                                            <li><a href="/dv/san-pham/triet-long-8980.aspx">Triệt lông</a></li>
+                                            
+                                            <li><a href="/dv/san-pham/tam-trang-8981.aspx">Tắm trắng</a></li>
+                                            
+                                            <li><a href="/dv/san-pham/goi-dau-duong-sinh-8986.aspx">Gội đầu dưỡng sinh</a></li>
+                                            
+                                            <li><a href="/dv/san-pham/cham-soc-da-8979.aspx">Chăm sóc da</a></li>
+                                            
+                                    </ul>
+                                </li>
+                                <!-- END MEGAMENU -->
+
+
+                                <!-- SIMPLE NAVIGATION LINK -->
+                                <li>
+                                    <a href="/tin-tuc-su-kien-693.aspx">Blogs</a>
+                                </li>
+                                <li><a href="/lien-he.aspx">Liên hệ</a></li>
+
+
+                                <!-- DROPDOWN MENU -->
+                                
+                                <!-- END DROPDOWN MENU -->
+
+
+                                <!-- SIMPLE NAVIGATION LINK -->
+                                
+
+
+                                <!-- HEADER CALL BUTTON -->
+                                
+                                <li class="header-btn header-phone  icon-user-desktop">
+                                    
+                                    <a class="circle-btn" href="/member/login.aspx "><span class="bg-color-09 white-color"><i class="far fa-user"></i></span></a>
+                                    
+                                </li>
+                                <li class="header-phone header-cart" style="display: none;">
+                                    <a href="/dat-hang/san-pham.aspx">
+                                        <span class="bg-color-09 white-color">
+                                            <i class="fal fa-shopping-cart"></i>
+                                        </span>
+                                        <p class="header-cart__item txt-color-06">12</p>
+                                    </a>
+                                </li>
+                                <!-- HEADER BUTTON 
+                                <li class="nl-simple" aria-haspopup="true">
+                                    <a href="#" class="btn btn-color-02 tra-01-hover last-link">Book Now</a>
+                                </li> -->
+
+
+                                <!-- HEADER SOCIAL LINKS 															
+                                <li class="nl-simple txt-color-03 header-socials clearfix" aria-haspopup="true">
+                                    <span><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></span>
+                                    <span><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></span>
+                                    <span><a href="#" class="ico-instagram"><i class="fab fa-instagram"></i></a></span>
+                                    <span><a href="#" class="ico-dribbble"><i class="fab fa-yelp"></i></a></span>	
+                                </li> -->
+
+
+                            </ul>
+                        </nav>
+                        <!-- END MAIN MENU -->
+
+                    </div>
                 </div>
+                <!-- END NAVIGATION MENU -->
+
+
             </div>
-            <!-- END NAVIGATION MENU -->
-
-
-        </div>
-        <!-- End header-wrapper -->
-    </header>`,
-    Thumbnail: "/assets/header/199af096498875.Y3JvcCwxNjE2LDEyNjQsMCww.png"
+            <!-- End header-wrapper -->
+        </header>`,
+        Thumbnail: "/assets/header/199af096498875.Y3JvcCwxNjE2LDEyNjQsMCww.png"
     },
     {
         ID: 2,
@@ -340,7 +340,7 @@ const dataHeader = [{
 
         </div>     <!-- End header-wrapper -->
     </header>`,
-    Thumbnail: "/assets/header/images.jpeg"
+        Thumbnail: "/assets/header/images.jpeg"
     }
 ]
 
@@ -349,6 +349,7 @@ export const teamplate = createSlice({
     initialState: {
         isDesktop: true,
         openSidebar: false,
+        color: null,
         header: {
             open: false,
             list: dataHeader,
@@ -389,6 +390,15 @@ export const teamplate = createSlice({
                 }
             }
         },
+        changeHeader: (state, action) => {
+            return {
+                ...state,
+                header: {
+                    ...state.header,
+                    current: action.payload
+                }
+            }
+        },
         openBox: (state, action) => {
             return {
                 ...state,
@@ -413,6 +423,12 @@ export const teamplate = createSlice({
                 }
             }
         },
+        setColor: (state, action) => {
+            return {
+                ...state,
+                color: action.payload
+            }
+        }
     },
 });
 
@@ -420,6 +436,8 @@ export const {
     updateIsDesktop,
     openHeader,
     hideHeader,
+    changeHeader,
     openBox,
     hideBox,
+    setColor
 } = teamplate.actions;

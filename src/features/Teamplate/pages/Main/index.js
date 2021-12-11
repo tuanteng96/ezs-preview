@@ -6,7 +6,7 @@ import Teamplate from "../../../../App/teamplate/layout/Teamplate";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Layout from "../Layout";
-import { hideHeader } from "../../teamplateSlice";
+import { changeHeader, hideHeader, setColor } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -17,14 +17,16 @@ function MainPage(props) {
   const ref = useRef();
   const [height, setHeight] = useState("0px");
   const dispath = useDispatch();
-  const { isDesktop, openSidebar, headerList, headerCurrent, isHeader } = useSelector(({ teamplate }) => ({
-    isDesktop: teamplate.isDesktop,
-    openSidebar: teamplate.openSidebar,
-    headerList: teamplate.header.list,
-    headerCurrent: teamplate.header.current,
-    isHeader: teamplate.header.open
-  }));
 
+  const { isDesktop, openSidebar, headerList, headerCurrent, isHeader, Color } =
+    useSelector(({ teamplate }) => ({
+      isDesktop: teamplate.isDesktop,
+      openSidebar: teamplate.openSidebar,
+      headerList: teamplate.header.list,
+      headerCurrent: teamplate.header.current,
+      isHeader: teamplate.header.open,
+      Color: teamplate.color,
+    }));
 
   const onLoad = () => {
     setHeight(ref.current.contentWindow.document.body.scrollHeight + "px");
@@ -32,9 +34,19 @@ function MainPage(props) {
 
   const onHideSidebar = (Type) => {
     if (Type === "Header") {
-      dispath(hideHeader())
+      dispath(hideHeader());
     }
-  }
+  };
+
+  const onChangeAction = (item, Type) => {
+    if (Type === "Header") {
+      dispath(changeHeader(item));
+    }
+  };
+
+  const onSetRoot = () => {
+    dispath(setColor("#999"));
+  };
 
   return (
     <React.Fragment>
@@ -44,8 +56,9 @@ function MainPage(props) {
         <div className="mt-6 teamplate-browser">
           <div className="px-35">
             <div
-              className={`bg-white position-relative rounded overflow-hidden teamplate-browser-content ${!isDesktop && "mobile-open"
-                }`}
+              className={`bg-white position-relative rounded overflow-hidden teamplate-browser-content ${
+                !isDesktop && "mobile-open"
+              }`}
             >
               <div className="toolbar d-flex align-items-center">
                 <div className="toolbar-url flex-1 mr-6">https://cser.vn</div>
@@ -63,7 +76,10 @@ function MainPage(props) {
                   width="100%"
                   height={height}
                   style={{ border: 0 }}
-                  initialContent='<!DOCTYPE html><html><head>
+                  initialContent={`
+                    <!DOCTYPE html><html style="${
+                      Color && `--default: ${Color}`
+                    }"><head>
           <!-- GOOGLE FONTS -->
           <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Alex+Brush&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:300,400,500,700&amp;display=swap" rel="stylesheet">
 
@@ -101,20 +117,30 @@ function MainPage(props) {
           </style>
           </head><body>
           <div id="mountHere"></div>
-          </body></html>'
+          </body></html>
+                  `}
                 >
                   <Layout />
                   <Teamplate />
+                  <button type="button" onClick={onSetRoot}>
+                    Chane
+                  </button>
                 </Frame>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {
-        isHeader && <Sidebar Title="Chọn Header" List={headerList} Type="Header" Current={headerCurrent} onHide={onHideSidebar} />
-      }
-
+      {isHeader && (
+        <Sidebar
+          Title="Chọn Header"
+          List={headerList}
+          Type="Header"
+          Current={headerCurrent}
+          onHide={onHideSidebar}
+          onChange={onChangeAction}
+        />
+      )}
     </React.Fragment>
   );
 }
