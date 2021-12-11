@@ -343,13 +343,17 @@ const dataHeader = [{
         Thumbnail: "/assets/header/images.jpeg"
     }
 ]
+const dataColor = ["#efa697", "#ebb650"];
 
 export const teamplate = createSlice({
     name: "teamplate",
     initialState: {
         isDesktop: true,
         openSidebar: false,
-        color: null,
+        color: {
+            current: "#efa697",
+            list: dataColor
+        },
         header: {
             open: false,
             list: dataHeader,
@@ -426,7 +430,10 @@ export const teamplate = createSlice({
         setColor: (state, action) => {
             return {
                 ...state,
-                color: action.payload
+                color: {
+                    ...state.color,
+                    current: action.payload
+                }
             }
         }
     },

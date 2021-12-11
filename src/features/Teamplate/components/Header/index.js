@@ -9,8 +9,10 @@ import { openHeader, updateIsDesktop } from "../../teamplateSlice";
 // };
 
 function Header(props) {
-  const { isDesktop } = useSelector(({ teamplate }) => ({
+  const { isDesktop, Color, ColorList } = useSelector(({ teamplate }) => ({
     isDesktop: teamplate.isDesktop,
+    Color: teamplate.color.current,
+    ColorList: teamplate.color.list,
   }));
   const dispath = useDispatch();
   const changeBreakpoints = (status) => {
@@ -46,6 +48,27 @@ function Header(props) {
             />
           </div>
           <div className="d-flex align-items-center justify-content-end w-30">
+            <div className="list-scheme">
+              <div className="scheme-current cursor-pointer d-flex align-items-center">
+                <div
+                  className="w-30px h-30px rounded-circle"
+                  style={{ backgroundColor: Color }}
+                ></div>
+                <i className="fal fa-angle-down ml-3"></i>
+              </div>
+              <ul>
+                {ColorList &&
+                  ColorList.map((item, index) => (
+                    <li key={index}>
+                      <div
+                        className="w-30px h-30px rounded-circle cursor-pointer"
+                        style={{ backgroundColor: item }}
+                      ></div>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div className="divider ml-5 mr-2"></div>
             <div className="list-breakpoints h-100">
               <div className="breakpoints-current px-4 d-flex align-items-center h-100 cursor-pointer text-dark text-hover-primary">
                 {isDesktop ? (
@@ -57,16 +80,18 @@ function Header(props) {
               </div>
               <ul>
                 <li
-                  className={`text-hover-primary ${isDesktop && "text-primary"
-                    }`}
+                  className={`text-hover-primary ${
+                    isDesktop && "text-primary"
+                  }`}
                   onClick={() => changeBreakpoints(true)}
                 >
                   <i className="fal fa-desktop"></i>
                   Desktop
                 </li>
                 <li
-                  className={`text-hover-primary ${!isDesktop && "text-primary"
-                    }`}
+                  className={`text-hover-primary ${
+                    !isDesktop && "text-primary"
+                  }`}
                   onClick={() => changeBreakpoints(false)}
                 >
                   <i className="fal fa-mobile"></i>
