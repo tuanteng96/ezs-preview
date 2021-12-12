@@ -37,7 +37,7 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
             {List &&
               List.map((item, index) => (
                 <div
-                  className={`item cursor-pointer ${
+                  className={`item cursor-pointer shadow ${
                     Current.ID === item.ID && "current"
                   }`}
                   key={index}
@@ -48,7 +48,9 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
                     src={toAbsoluteUrl(item.Thumbnail)}
                     alt={item.Title}
                   />
-                  <div>Chọn Header</div>
+                  {
+                    Current.ID === item.ID ? <div className="choose bg-success"><i className="fal fa-check"></i> Đang chọn</div> : <div className="choose bg-primary">Chọn Header</div>
+                  }
                 </div>
               ))}
           </PerfectScrollbar>

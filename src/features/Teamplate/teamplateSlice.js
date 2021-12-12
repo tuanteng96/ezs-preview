@@ -343,7 +343,48 @@ const dataHeader = [{
         Thumbnail: "/assets/header/images.jpeg"
     }
 ]
-const dataColor = ["#efa697", "#ebb650"];
+const dataBody = [{
+    ID: 1,
+    Title: "Slide Top",
+    Html: `<section id="hero-1" class="hero-section division">
+    <div class="slider">
+       <ul class="slides">
+          <!-- SLIDE #1 -->
+          <li id="slide-1" class="active" style="opacity: 1; transform: translateX(0px) translateY(0px);">
+             <!-- Background Image -->
+             <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Beauty &amp; SPA Center" style="background-image: url(https://cser.vn/Upload/image/2021/12/01/slide-2_2021-12-01-142029.jpg);">
+             <!-- Image Caption -->
+             <div class="caption d-flex align-items-center left-align" style="opacity: 1; transform: translateX(0px) translateY(0px);">
+                <div class="container">
+                   <div class="row">
+                      <div class="col-lg-6">
+                         <div class="caption-txt white-color">
+                            <!-- Title -->
+                            <h2>Beauty &amp; SPA Center</h2>
+                            <!-- Text -->
+                            <p>Feugiat primis ligula gravida auctor mauri egestas undo augue viverra tortor in iaculis a placerat eugiat ipsum</p>
+                            <!-- Button -->
+                            <a href="booking.html" class="btn btn-md btn-color-02 tra-white-hover">Book an Appointment</a>
+                         </div>
+                      </div>
+                   </div>
+                   <!-- End row -->
+                </div>
+                <!-- End container -->
+             </div>
+             <!-- End Image Caption -->
+          </li>
+          <!-- END SLIDE #1 -->
+       </ul>
+       <ul class="indicators">
+          <li class="indicator-item active"></li>
+          <li class="indicator-item"></li>
+          <li class="indicator-item"></li>
+       </ul>
+    </div>
+ </section>`
+}]
+const dataColor = ["#efa697", "#ebb650", "#8950FC", "#3699FF"];
 
 export const teamplate = createSlice({
     name: "teamplate",
@@ -360,7 +401,8 @@ export const teamplate = createSlice({
             current: dataHeader[1]
         },
         box: {
-            open: false
+            open: false,
+            list: dataBody
         }
     },
     reducers: {

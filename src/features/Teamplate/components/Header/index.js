@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
-import { openHeader, updateIsDesktop } from "../../teamplateSlice";
+import { openHeader, setColor, updateIsDesktop } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -23,11 +23,15 @@ function Header(props) {
     dispath(openHeader());
   };
 
+  const onChangeColor = (color) => {
+    dispath(setColor(color));
+  }
+
   return (
     <div className="bg-white shadow teamplate-header">
       <div className="px-35">
-        <div className="d-flex justify-content-between py-2">
-          <div className="w-30 d-flex">
+        <div className="d-flex justify-content-between">
+          <div className="w-30 d-flex align-items-center h-48px">
             <div
               className="chosee-header cursor-pointer"
               onClick={onChangeHeader}
@@ -47,8 +51,8 @@ function Header(props) {
               alt="EZS.VN"
             />
           </div>
-          <div className="d-flex align-items-center justify-content-end w-30">
-            <div className="list-scheme">
+          <div className="d-flex align-items-center justify-content-end w-30 h-48px">
+            <div className="list-scheme h-100 d-flex">
               <div className="scheme-current cursor-pointer d-flex align-items-center">
                 <div
                   className="w-30px h-30px rounded-circle"
@@ -61,9 +65,13 @@ function Header(props) {
                   ColorList.map((item, index) => (
                     <li key={index}>
                       <div
+                        onClick={() => onChangeColor(item)}
                         className="w-30px h-30px rounded-circle cursor-pointer"
                         style={{ backgroundColor: item }}
                       ></div>
+                      {
+                        item === Color && <i className="fal fa-check"></i>
+                      }
                     </li>
                   ))}
               </ul>

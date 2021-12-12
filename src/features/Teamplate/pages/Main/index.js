@@ -6,7 +6,7 @@ import Teamplate from "../../../../App/teamplate/layout/Teamplate";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Layout from "../Layout";
-import { changeHeader, hideHeader, setColor } from "../../teamplateSlice";
+import { changeHeader, hideHeader } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -25,7 +25,7 @@ function MainPage(props) {
       headerList: teamplate.header.list,
       headerCurrent: teamplate.header.current,
       isHeader: teamplate.header.open,
-      Color: teamplate.color,
+      Color: teamplate.color.current,
     }));
 
   const onLoad = () => {
@@ -42,10 +42,6 @@ function MainPage(props) {
     if (Type === "Header") {
       dispath(changeHeader(item));
     }
-  };
-
-  const onSetRoot = () => {
-    dispath(setColor("#999"));
   };
 
   return (
@@ -122,9 +118,6 @@ function MainPage(props) {
                 >
                   <Layout />
                   <Teamplate />
-                  <button type="button" onClick={onSetRoot}>
-                    Chane
-                  </button>
                 </Frame>
               </div>
             </div>

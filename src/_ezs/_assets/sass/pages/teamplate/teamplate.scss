@@ -93,6 +93,68 @@
                 }
             }
         }
+
+        .list-scheme {
+            position: relative;
+
+            &:hover {
+
+                ul {
+                    left: 50%;
+                    opacity: 1;
+                    pointer-events: auto;
+                    -webkit-animation: movedown .2s forwards;
+                    animation: movedown .2s forwards;
+                }
+            }
+
+            ul {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                z-index: 5;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                flex-wrap: wrap;
+                list-style: none;
+                background: #fff;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 2px 14px 0 rgb(32 48 60 / 15%);
+                box-shadow: 0 2px 14px 0 rgb(32 48 60 / 15%);
+                z-index: 100;
+                padding: 10px 10px 0 10px;
+                -webkit-transition: margin-top .2s linear, opacity .2s linear;
+                transition: margin-top .2s linear, opacity .2s linear;
+                pointer-events: none;
+                opacity: 0;
+                -webkit-transition: margin-top .2s linear, opacity .2s linear;
+                transition: margin-top .2s linear, opacity .2s linear;
+                -webkit-animation: moveup .2s forwards;
+                animation: moveup .2s forwards;
+                margin: 0 -10px;
+                min-width: 100px;
+
+                li {
+                    padding: 0 5px;
+                    position: relative;
+                    margin-bottom: 10px;
+
+                    i {
+                        position: absolute;
+                        color: #fff;
+                        top: 50%;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(-50%);
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -155,38 +217,73 @@
 
     .team-panel-header {
         padding: 30px 20px 20px 20px;
+
         h4 {
             text-transform: uppercase;
             font-size: 15px;
             font-weight: 500;
             color: #000;
         }
+
         .toolbar {
             .btn-close {
                 background: transparent;
                 border: 0;
                 font-size: 20px;
+
                 i {
                     font-size: 18px;
                 }
             }
         }
     }
+
     .team-panel-body {
         height: calc(100% - 82px);
+
         .scroll {
             padding: 0 20px;
         }
+
         .item {
             position: relative;
             overflow: hidden;
             margin-bottom: 15px;
-            border-radius: 1px;
+            border-radius: 2px;
+
+            &:hover {
+                .choose {
+                    bottom: 0;
+                    visibility: visible;
+                }
+            }
+
+            .choose {
+                position: absolute;
+                width: 100%;
+                height: 42px;
+                bottom: -42px;
+                line-height: 42px;
+                text-align: center;
+                color: $white;
+                text-transform: uppercase;
+                font-weight: 500;
+                cursor: pointer;
+                visibility: hidden;
+                transition: all 0.3s ease;
+
+                &.bg-success {
+                    bottom: 0;
+                    visibility: visible;
+                }
+            }
+
             &.current {
                 img {
                     filter: grayscale(100%);
                 }
             }
+
             &:last-child {
                 margin-bottom: 20px;
             }
@@ -200,6 +297,6 @@
     }
 
     100% {
-        margin-top: -4px;
+        margin-top: 0px;
     }
 }
