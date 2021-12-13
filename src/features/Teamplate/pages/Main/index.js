@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Layout from "../Layout";
 import { changeHeader, hideBox, hideHeader } from "../../teamplateSlice";
+import { toAbsoluteUrl } from "../../../../_ezs/_helpers/AssetsHelpers";
+
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -116,7 +118,7 @@ function MainPage(props) {
 
           <!-- RESPONSIVE CSS -->
           <link href="https://cser.vn/themes/_magic/css/responsive.css" rel="stylesheet">
-
+          <link href="${toAbsoluteUrl("/css/style.css")}" rel="stylesheet">
           <style>
                 body {
                     overflow-y: hidden !important;

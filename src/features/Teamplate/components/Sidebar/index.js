@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { toAbsolutePath } from "../../../../_ezs/_helpers/AssetsHelpers";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { Animated } from "react-animated-css";
 
 Sidebar.propTypes = {
   Title: PropTypes.string,
@@ -14,7 +15,7 @@ const perfectScrollbarOptions = {
 
 function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
   return (
-    <div className="teamplate-sidebar">
+    <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true} className="teamplate-sidebar" animationInDuration={500}>
       <div className="team-panel-header d-flex align-items-center justify-content-between">
         <h4 className="mb-0">{Title}</h4>
         <div className="toolbar">
@@ -37,9 +38,8 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
             {List &&
               List.map((item, index) => (
                 <div
-                  className={`item cursor-pointer shadow ${
-                    Current.ID === item.ID && "current"
-                  }`}
+                  className={`item cursor-pointer shadow ${Current.ID === item.ID && "current"
+                    }`}
                   key={index}
                   onClick={() => onChange(item, Type)}
                 >
@@ -83,7 +83,7 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
           </PerfectScrollbar>
         )}
       </div>
-    </div>
+    </Animated>
   );
 }
 export default Sidebar;

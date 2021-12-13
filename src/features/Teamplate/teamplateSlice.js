@@ -1,8 +1,14 @@
 import {
     createSlice
 } from "@reduxjs/toolkit";
+import { arrayMove } from "../../_ezs/_helpers/HelpersArray";
 
-const { dataHeader, dataBody, dataColor } = window.teamplate;
+const {
+    dataHeader,
+    dataBody,
+    dataFooter,
+    dataColor
+} = window.teamplate;
 
 export const teamplate = createSlice({
     name: "teamplate",
@@ -18,12 +24,18 @@ export const teamplate = createSlice({
             list: dataHeader,
             current: dataHeader[1]
         },
+        footer: {
+            current: dataFooter[0]
+        },
         box: {
             open: false,
             list: dataBody
         },
         layout: [
-            ...dataBody
+            dataBody[0],
+            dataBody[2],
+            dataBody[3],
+            dataBody[5]
         ]
     },
     reducers: {
@@ -98,6 +110,29 @@ export const teamplate = createSlice({
                     current: action.payload
                 }
             }
+        },
+        onPosition: (state, action) => {
+            const {
+                Type,
+                index
+            } = action.payload;
+            let newLayout = [];
+            const cloneState = JSON.parse(JSON.stringify(state));
+            if (Type === "up") {
+                if (index === 0) newLayout = state.layout;
+                else {
+                    newLayout = arrayMove(cloneState.layout, index, index - 1);
+                }
+            }
+            else {
+                if (index === state.layout.length - 1) newLayout = state.layout;
+                else {
+                    newLayout = arrayMove(cloneState.layout, index, index + 1);
+                }
+            }
+            return {
+                ...state, layout: newLayout
+            };
         }
     },
 });
@@ -109,5 +144,6 @@ export const {
     changeHeader,
     openBox,
     hideBox,
-    setColor
+    setColor,
+    onPosition
 } = teamplate.actions;
