@@ -2,11 +2,10 @@ import React, { useRef, useState } from "react";
 import Header from "../../components/Header";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
 import Frame from "react-frame-component";
-import Teamplate from "../../../../App/teamplate/layout/Teamplate";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Layout from "../Layout";
-import { changeHeader, hideHeader } from "../../teamplateSlice";
+import { changeHeader, hideBox, hideHeader } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -18,23 +17,35 @@ function MainPage(props) {
   const [height, setHeight] = useState("0px");
   const dispath = useDispatch();
 
-  const { isDesktop, openSidebar, headerList, headerCurrent, isHeader, Color } =
-    useSelector(({ teamplate }) => ({
-      isDesktop: teamplate.isDesktop,
-      openSidebar: teamplate.openSidebar,
-      headerList: teamplate.header.list,
-      headerCurrent: teamplate.header.current,
-      isHeader: teamplate.header.open,
-      Color: teamplate.color.current,
-    }));
+  const {
+    isDesktop,
+    openSidebar,
+    headerList,
+    headerCurrent,
+    isHeader,
+    Color,
+    isBox,
+    boxList,
+  } = useSelector(({ teamplate }) => ({
+    isDesktop: teamplate.isDesktop,
+    openSidebar: teamplate.openSidebar,
+    headerList: teamplate.header.list,
+    headerCurrent: teamplate.header.current,
+    isHeader: teamplate.header.open,
+    Color: teamplate.color.current,
+    isBox: teamplate.box.open,
+    boxList: teamplate.box.list,
+  }));
 
   const onLoad = () => {
     setHeight(ref.current.contentWindow.document.body.scrollHeight + "px");
   };
-
   const onHideSidebar = (Type) => {
     if (Type === "Header") {
       dispath(hideHeader());
+    }
+    if (Type === "Box") {
+      dispath(hideBox());
     }
   };
 
@@ -117,7 +128,6 @@ function MainPage(props) {
                   `}
                 >
                   <Layout />
-                  <Teamplate />
                 </Frame>
               </div>
             </div>
@@ -132,6 +142,17 @@ function MainPage(props) {
           Current={headerCurrent}
           onHide={onHideSidebar}
           onChange={onChangeAction}
+        />
+      )}
+
+      {isBox && (
+        <Sidebar
+          Title="Chọn Section"
+          List={boxList}
+          Type="Box"
+          Current=""
+          onHide={onHideSidebar}
+          onChange={(data) => console.log(data)}
         />
       )}
     </React.Fragment>

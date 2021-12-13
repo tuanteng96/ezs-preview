@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
-import { openHeader, setColor, updateIsDesktop } from "../../teamplateSlice";
+import { openBox, openHeader, setColor, updateIsDesktop } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -23,6 +24,10 @@ function Header(props) {
     dispath(openHeader());
   };
 
+  const onChangeBox = () => {
+    dispath(openBox());
+  };
+
   const onChangeColor = (color) => {
     dispath(setColor(color));
   }
@@ -39,7 +44,10 @@ function Header(props) {
               Header Page
               <i className="fal fa-angle-down ml-3 vertical-align-sub"></i>
             </div>
-            <div className="chosee-add cursor-pointer ml-7">
+            <div
+              className="chosee-add cursor-pointer ml-7"
+              onClick={onChangeBox}
+            >
               Thêm mới
               <i className="fal fa-angle-down ml-3 vertical-align-sub"></i>
             </div>
@@ -69,9 +77,7 @@ function Header(props) {
                         className="w-30px h-30px rounded-circle cursor-pointer"
                         style={{ backgroundColor: item }}
                       ></div>
-                      {
-                        item === Color && <i className="fal fa-check"></i>
-                      }
+                      {item === Color && <i className="fal fa-check"></i>}
                     </li>
                   ))}
               </ul>
@@ -109,7 +115,9 @@ function Header(props) {
             </div>
             <div className="divider ml-2 mr-5"></div>
             <div>
-              <button className="btn btn-xs btn-primary">Preview</button>
+              <Link to="/teamplate/view" className="btn btn-xs btn-primary">
+                Preview
+              </Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { toAbsoluteUrl } from "../../../../_ezs/_helpers/AssetsHelpers";
+import { toAbsolutePath } from "../../../../_ezs/_helpers/AssetsHelpers";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 Sidebar.propTypes = {
@@ -45,12 +45,39 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
                 >
                   <img
                     className="w-100"
-                    src={toAbsoluteUrl(item.Thumbnail)}
+                    src={toAbsolutePath(item.Thumbnail)}
                     alt={item.Title}
                   />
-                  {
-                    Current.ID === item.ID ? <div className="choose bg-success"><i className="fal fa-check"></i> Đang chọn</div> : <div className="choose bg-primary">Chọn Header</div>
-                  }
+                  {Current.ID === item.ID ? (
+                    <div className="choose bg-success">
+                      <i className="fal fa-check"></i> Đang chọn
+                    </div>
+                  ) : (
+                    <div className="choose bg-primary">Chọn Header</div>
+                  )}
+                </div>
+              ))}
+          </PerfectScrollbar>
+        )}
+        {Type === "Box" && (
+          <PerfectScrollbar
+            options={perfectScrollbarOptions}
+            className="scroll"
+            style={{ position: "relative", height: "100%" }}
+          >
+            {List &&
+              List.map((item, index) => (
+                <div
+                  className={`item cursor-pointer shadow`}
+                  key={index}
+                  onClick={() => onChange(item, Type)}
+                >
+                  <img
+                    className="w-100"
+                    src={toAbsolutePath(item.Thumbnail)}
+                    alt={item.Title}
+                  />
+                  <div className="choose bg-primary">Chọn Section</div>
                 </div>
               ))}
           </PerfectScrollbar>

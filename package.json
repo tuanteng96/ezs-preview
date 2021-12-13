@@ -2,6 +2,7 @@
     "name": "cser-preview",
     "version": "0.1.0",
     "private": true,
+    "homepage": "/Preview/",
     "dependencies": {
         "@reduxjs/toolkit": "^1.6.2",
         "@testing-library/jest-dom": "^5.11.4",
