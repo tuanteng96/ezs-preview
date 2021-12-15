@@ -175,17 +175,16 @@ export const teamplate = createSlice({
         },
         changeBox: (state, action) => {
             const { item, choose } = action.payload;
-            const cloneState = JSON.parse(JSON.stringify(state));
-            if (choose.index && choose.index !== 0) {
+            if (choose.index !== null && choose.index >= 0) {
                 if (choose.position === "bottom") {
-                    cloneState.layout.splice(choose.index, 0, item);
+                    state.layout.splice(choose.index + 1, 0, item);
                 } else {
-                    cloneState.layout.splice(choose.index - 1, 0, item);
+                    state.layout.splice(choose.index, 0, item);
                 }
             } else {
-                cloneState.layout.splice(0, 0, item);
+                state.layout.splice(0, 0, item);
             }
-            return cloneState;
+            return state;
         },
         deleteBox: (state, action) => {
             return {
@@ -247,6 +246,9 @@ export const teamplate = createSlice({
                     open: false
                 }
             }
+        },
+        onDragDrop: (state, action) => {
+            console.log(action.payload);
         }
     },
 });
@@ -265,5 +267,6 @@ export const {
     deleteBox,
     setColor,
     onPosition,
-    addPosition
+    addPosition,
+    onDragDrop
 } = teamplate.actions;

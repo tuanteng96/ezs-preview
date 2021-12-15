@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import renderHTML from "react-render-html";
 import ReactDragList from "react-drag-list";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
-import { addPosition, deleteBox, onPosition } from "../../teamplateSlice";
+import { addPosition, deleteBox, onDragDrop, onPosition } from "../../teamplateSlice";
 
 export default function Layout() {
   const dispath = useDispatch();
@@ -14,14 +14,16 @@ export default function Layout() {
   }));
 
   const onUpdate = (node) => {
-    console.log(node);
-    // const {oldIndex, newIndex} = node;
-    // const newSitemap = [...dataTem];
-    // const element = newSitemap[oldIndex];
-    // newSitemap.splice(oldIndex, 1);
-    // newSitemap.splice(oldIndex, 0, element);
-    // console.log(newSitemap)
-    // setDataTem(newSitemap)
+    console.log(node)
+    const {oldIndex, newIndex} = node;
+    dispath(onDragDrop({
+      oldIndex: oldIndex,
+      newIndex: newIndex
+    }))
+    const newSitemap = [...layout];
+    const element = newSitemap[oldIndex];
+    newSitemap.splice(oldIndex, 1);
+    newSitemap.splice(oldIndex, 0, element);
   };
 
   const changePosition = (Type, index) => {

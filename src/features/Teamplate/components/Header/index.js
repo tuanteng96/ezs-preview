@@ -126,7 +126,7 @@ function Header(props) {
             </div>
             <div className="divider ml-2 mr-5"></div>
             <div>
-              <Link to="/teamplate/view" className="btn btn-xs btn-primary">
+              <Link to="/teamplate/view" className="btn btn-xs btn-primary" target="_blank" rel="noopener noreferrer">
                 Preview
               </Link>
             </div>
