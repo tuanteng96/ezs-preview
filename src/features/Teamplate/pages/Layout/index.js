@@ -1,16 +1,16 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import renderHTML from 'react-render-html';
+import React, { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import renderHTML from "react-render-html";
 import ReactDragList from "react-drag-list";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
-import { onPosition } from '../../teamplateSlice';
+import { addPosition, deleteBox, onPosition } from "../../teamplateSlice";
 
 export default function Layout() {
   const dispath = useDispatch();
   const { header, layout, footer } = useSelector(({ teamplate }) => ({
     header: teamplate.header.current,
     layout: teamplate.layout,
-    footer: teamplate.footer.current
+    footer: teamplate.footer.current,
   }));
 
   const onUpdate = (node) => {
@@ -25,41 +25,88 @@ export default function Layout() {
   };
 
   const changePosition = (Type, index) => {
-    dispath(onPosition({
-      Type, index
-    }))
+    dispath(
+      onPosition({
+        Type,
+        index,
+      })
+    );
+  };
+
+  const onAddPositon = (positon) => {
+    dispath(addPosition(positon));
   }
 
+  const onDelete = (index) => {
+    dispath(deleteBox(index));
+  };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="page" id="page">
         {/* Header */}
-        {renderHTML(header.Html)}
+        <Fragment>{renderHTML(header.Html)}</Fragment>
         {/* End Header */}
         {layout && (
           <ReactDragList
             dataSource={layout}
-            row={(item, index) => <div className="has-presets" key={index}>
-              <div className="list-span-overlay">
-                <button className="btn-add btn-add-top"><i className="fal fa-plus"></i></button>
-                <button className="btn-add btn-add-bottom"><i className="fal fa-plus"></i></button>
-                <div className="list-downup">
-                  <button className="btn-down" onClick={() => changePosition("down", index)}><i className="fal fa-long-arrow-down"></i></button>
-                  <button className="btn-up" onClick={() => changePosition("up", index)}><i className="fal fa-long-arrow-up"></i></button>
+            row={(item, index) => (
+              <div className="has-presets" key={index}>
+                <div className="list-span-overlay">
+                  <button
+                    className="btn-add btn-add-top"
+                    onClick={() =>
+                      onAddPositon({
+                        index: index,
+                        positon: "top",
+                      })
+                    }
+                  >
+                    <i className="fal fa-plus"></i>
+                  </button>
+                  <button
+                    className="btn-add btn-add-bottom"
+                    onClick={() =>
+                      onAddPositon({
+                        index: index,
+                        positon: "bottom",
+                      })
+                    }
+                  >
+                    <i className="fal fa-plus"></i>
+                  </button>
+                  <div className="list-downup">
+                    <button
+                      className="btn-down"
+                      onClick={() => changePosition("down", index)}
+                    >
+                      <i className="fal fa-long-arrow-down"></i>
+                    </button>
+                    <button
+                      className="btn-up"
+                      onClick={() => changePosition("up", index)}
+                    >
+                      <i className="fal fa-long-arrow-up"></i>
+                    </button>
+                  </div>
+                  <button
+                    className="btn-delete"
+                    onClick={() => onDelete(index)}
+                  >
+                    <i className="fal fa-trash-alt"></i>
+                  </button>
                 </div>
-                <button className="btn-delete"><i className="fal fa-trash-alt"></i></button>
+                {renderHTML(item.Html)}
               </div>
-              {renderHTML(item.Html)}
-            </div>}
+            )}
             onUpdate={(data) => onUpdate(data)}
             handles={false}
           />
         )}
-        {/* Header */}
-        {renderHTML(footer.Html)}
-        {/* End Header */}
+        {/* Footer */}
+        <Fragment>{renderHTML(footer.Html)}</Fragment>
+        {/* End Footer */}
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 }

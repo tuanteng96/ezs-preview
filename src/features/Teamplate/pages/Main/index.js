@@ -5,7 +5,14 @@ import Frame from "react-frame-component";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Layout from "../Layout";
-import { changeHeader, hideBox, hideHeader } from "../../teamplateSlice";
+import {
+  changeBox,
+  changeFooter,
+  changeHeader,
+  hideBox,
+  hideFooter,
+  hideHeader,
+} from "../../teamplateSlice";
 import { toAbsoluteUrl } from "../../../../_ezs/_helpers/AssetsHelpers";
 
 // import PropTypes from 'prop-types';
@@ -22,18 +29,26 @@ function MainPage(props) {
   const {
     isDesktop,
     openSidebar,
+    choose,
     headerList,
     headerCurrent,
     isHeader,
+    footerList,
+    footerCurrent,
+    isFooter,
     Color,
     isBox,
     boxList,
   } = useSelector(({ teamplate }) => ({
     isDesktop: teamplate.isDesktop,
     openSidebar: teamplate.openSidebar,
+    choose: teamplate.choose,
     headerList: teamplate.header.list,
     headerCurrent: teamplate.header.current,
     isHeader: teamplate.header.open,
+    footerList: teamplate.footer.list,
+    footerCurrent: teamplate.footer.current,
+    isFooter: teamplate.footer.open,
     Color: teamplate.color.current,
     isBox: teamplate.box.open,
     boxList: teamplate.box.list,
@@ -46,6 +61,9 @@ function MainPage(props) {
     if (Type === "Header") {
       dispath(hideHeader());
     }
+    if (Type === "Footer") {
+      dispath(hideFooter());
+    }
     if (Type === "Box") {
       dispath(hideBox());
     }
@@ -54,6 +72,16 @@ function MainPage(props) {
   const onChangeAction = (item, Type) => {
     if (Type === "Header") {
       dispath(changeHeader(item));
+    }
+    if (Type === "Footer") {
+      dispath(changeFooter(item));
+    }
+    if (Type === "Box") {
+      const action = {
+        item: item,
+        choose: choose,
+      };
+      dispath(changeBox(action));
     }
   };
 
@@ -147,6 +175,17 @@ function MainPage(props) {
         />
       )}
 
+      {isFooter && (
+        <Sidebar
+          Title="Chọn Footer"
+          List={footerList}
+          Type="Footer"
+          Current={footerCurrent}
+          onHide={onHideSidebar}
+          onChange={onChangeAction}
+        />
+      )}
+
       {isBox && (
         <Sidebar
           Title="Chọn Section"
@@ -154,7 +193,7 @@ function MainPage(props) {
           Type="Box"
           Current=""
           onHide={onHideSidebar}
-          onChange={(data) => console.log(data)}
+          onChange={onChangeAction}
         />
       )}
     </React.Fragment>

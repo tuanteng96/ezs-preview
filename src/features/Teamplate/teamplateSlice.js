@@ -15,6 +15,10 @@ export const teamplate = createSlice({
     initialState: {
         isDesktop: true,
         openSidebar: false,
+        choose: {
+            index: null,
+            position: null
+        },
         color: {
             current: "#efa697",
             list: dataColor
@@ -25,6 +29,8 @@ export const teamplate = createSlice({
             current: dataHeader[1]
         },
         footer: {
+            open: false,
+            list: dataFooter,
             current: dataFooter[0]
         },
         box: {
@@ -53,9 +59,17 @@ export const teamplate = createSlice({
                     ...state.header,
                     open: true
                 },
+                footer: {
+                    ...state.footer,
+                    open: false
+                },
                 box: {
                     ...state.box,
                     open: false
+                },
+                choose: {
+                    index: null,
+                    position: null
                 }
             }
         },
@@ -66,6 +80,10 @@ export const teamplate = createSlice({
                 header: {
                     ...state.header,
                     open: false,
+                },
+                choose: {
+                    index: null,
+                    position: null
                 }
             }
         },
@@ -74,6 +92,51 @@ export const teamplate = createSlice({
                 ...state,
                 header: {
                     ...state.header,
+                    current: action.payload
+                }
+            }
+        },
+        openFooter: (state, action) => {
+            return {
+                ...state,
+                openSidebar: true,
+                header: {
+                    ...state.header,
+                    open: false
+                },
+                footer: {
+                    ...state.footer,
+                    open: true
+                },
+                box: {
+                    ...state.box,
+                    open: false
+                },
+                choose: {
+                    index: null,
+                    position: null
+                }
+            }
+        },
+        hideFooter: (state, action) => {
+            return {
+                ...state,
+                openSidebar: false,
+                footer: {
+                    ...state.footer,
+                    open: false,
+                },
+                choose: {
+                    index: null,
+                    position: null
+                }
+            }
+        },
+        changeFooter: (state, action) => {
+            return {
+                ...state,
+                footer: {
+                    ...state.footer,
                     current: action.payload
                 }
             }
@@ -89,6 +152,10 @@ export const teamplate = createSlice({
                 header: {
                     ...state.header,
                     open: false
+                },
+                choose: {
+                    index: null,
+                    position: null
                 }
             }
         },
@@ -99,8 +166,32 @@ export const teamplate = createSlice({
                 box: {
                     ...state.box,
                     open: false
+                },
+                choose: {
+                    index: null,
+                    position: null
                 }
             }
+        },
+        changeBox: (state, action) => {
+            const { item, choose } = action.payload;
+            const cloneState = JSON.parse(JSON.stringify(state));
+            if (choose.index && choose.index !== 0) {
+                if (choose.position === "bottom") {
+                    cloneState.layout.splice(choose.index, 0, item);
+                } else {
+                    cloneState.layout.splice(choose.index - 1, 0, item);
+                }
+            } else {
+                cloneState.layout.splice(0, 0, item);
+            }
+            return cloneState;
+        },
+        deleteBox: (state, action) => {
+            return {
+                ...state,
+                layout: state.layout.filter((item, index) => index !== action.payload)
+            };
         },
         setColor: (state, action) => {
             return {
@@ -123,16 +214,39 @@ export const teamplate = createSlice({
                 else {
                     newLayout = arrayMove(cloneState.layout, index, index - 1);
                 }
-            }
-            else {
+            } else {
                 if (index === state.layout.length - 1) newLayout = state.layout;
                 else {
                     newLayout = arrayMove(cloneState.layout, index, index + 1);
                 }
             }
             return {
-                ...state, layout: newLayout
+                ...state,
+                layout: newLayout
             };
+        },
+        addPosition: (state, action) => {
+            const { index, positon } = action.payload;
+            return {
+                ...state,
+                openSidebar: true,
+                choose: {
+                    index: index,
+                    position: positon
+                },
+                box: {
+                    ...state.box,
+                    open: true
+                },
+                header: {
+                    ...state.header,
+                    open: false
+                },
+                footer: {
+                    ...state.footer,
+                    open: false
+                }
+            }
         }
     },
 });
@@ -142,8 +256,14 @@ export const {
     openHeader,
     hideHeader,
     changeHeader,
+    openFooter,
+    hideFooter,
+    changeFooter,
     openBox,
     hideBox,
+    changeBox,
+    deleteBox,
     setColor,
-    onPosition
+    onPosition,
+    addPosition
 } = teamplate.actions;

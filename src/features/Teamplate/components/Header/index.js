@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../../../_ezs/_assets/sass/pages/teamplate/teamplate.scss";
-import { openBox, openHeader, setColor, updateIsDesktop } from "../../teamplateSlice";
+import { openBox, openFooter, openHeader, setColor, updateIsDesktop } from "../../teamplateSlice";
 // import PropTypes from 'prop-types';
 
 // index.propTypes = {
@@ -23,6 +23,10 @@ function Header(props) {
   const onChangeHeader = () => {
     dispath(openHeader());
   };
+
+  const onChangeFooter = () => {
+    dispath(openFooter());
+  }
 
   const onChangeBox = () => {
     dispath(openBox());
@@ -45,7 +49,14 @@ function Header(props) {
               <i className="fal fa-angle-down ml-3 vertical-align-sub"></i>
             </div>
             <div
-              className="chosee-add cursor-pointer ml-7"
+              className="chosee-header cursor-pointer ml-2"
+              onClick={onChangeFooter}
+            >
+              Footer Page
+              <i className="fal fa-angle-down ml-3 vertical-align-sub"></i>
+            </div>
+            <div
+              className="chosee-header cursor-pointer ml-2"
               onClick={onChangeBox}
             >
               Thêm mới

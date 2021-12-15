@@ -15,7 +15,13 @@ const perfectScrollbarOptions = {
 
 function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
   return (
-    <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true} className="teamplate-sidebar" animationInDuration={500}>
+    <Animated
+      animationIn="bounceInLeft"
+      animationOut="fadeOut"
+      isVisible={true}
+      className="teamplate-sidebar"
+      animationInDuration={500}
+    >
       <div className="team-panel-header d-flex align-items-center justify-content-between">
         <h4 className="mb-0">{Title}</h4>
         <div className="toolbar">
@@ -29,7 +35,7 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
         </div>
       </div>
       <div className="team-panel-body">
-        {Type === "Header" && (
+        {(Type === "Header" || Type === "Footer") && (
           <PerfectScrollbar
             options={perfectScrollbarOptions}
             className="scroll"
@@ -38,8 +44,9 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
             {List &&
               List.map((item, index) => (
                 <div
-                  className={`item cursor-pointer shadow ${Current.ID === item.ID && "current"
-                    }`}
+                  className={`item cursor-pointer shadow ${
+                    Current.ID === item.ID && "current"
+                  }`}
                   key={index}
                   onClick={() => onChange(item, Type)}
                 >
@@ -53,7 +60,9 @@ function Sidebar({ Title, List, Type, Current, onHide, onChange }) {
                       <i className="fal fa-check"></i> Đang chọn
                     </div>
                   ) : (
-                    <div className="choose bg-primary">Chọn Header</div>
+                    <div className="choose bg-primary">
+                      Chọn {Type === "Header" ? "Header" : "Footer"}
+                    </div>
                   )}
                 </div>
               ))}
